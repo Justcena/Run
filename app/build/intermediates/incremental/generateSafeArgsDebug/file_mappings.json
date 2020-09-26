@@ -1,0 +1,1 @@
+[{"navFile":"src\\main\\res\\navigation\\nav_graph.xml","javaFiles":["com.testapp.justrun.ui.fragment.RunFragmentDirections","com.testapp.justrun.ui.fragment.SetupFragmentDirections","com.testapp.justrun.ui.fragment.TrackingFragmentDirections"]}]
