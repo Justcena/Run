@@ -30,10 +30,10 @@
       <list>
         <option value="Kotlin Interface" />
         <option value="Kotlin Object" />
-        <option value="Kotlin Class" />
         <option value="layoutResourceFile" />
         <option value="navigationResourceFile" />
         <option value="resourceFile" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -291,6 +291,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="create di" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="751" y="276" key="#com.intellij.ide.util.MemberChooser" timestamp="1601123046667">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="751" y="276" key="#com.intellij.ide.util.MemberChooser/1920.32.1536.832/0.40.1920.1040@0.40.1920.1040" timestamp="1601123046667" />
     <state x="478" y="1096" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600940050162">
       <screen x="0" y="1112" width="1536" height="832" />
     </state>
@@ -371,6 +375,10 @@
       <screen x="0" y="1112" width="1536" height="832" />
     </state>
     <state x="578" y="1429" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.1112.1536.832/0.40.1920.1040@0.1112.1536.832" timestamp="1600959015605" />
+    <state x="616" y="260" key="run.anything.popup" timestamp="1601122971009">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="616" y="260" key="run.anything.popup/1920.32.1536.832/0.40.1920.1040@0.40.1920.1040" timestamp="1601122971009" />
     <state x="431" y="1262" width="672" height="678" key="search.everywhere.popup" timestamp="1600954874370">
       <screen x="0" y="1112" width="1536" height="832" />
     </state>
