@@ -33,6 +33,7 @@
         <option value="Kotlin Class" />
         <option value="layoutResourceFile" />
         <option value="navigationResourceFile" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -298,10 +299,10 @@
       <screen x="0" y="1112" width="1536" height="832" />
     </state>
     <state x="548" y="1176" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.1112.1536.832/0.40.1920.1040@0.1112.1536.832" timestamp="1600954315853" />
-    <state x="349" y="1267" key="AndroidCreateResourceFileDialog" timestamp="1601114799542">
+    <state x="349" y="1267" key="AndroidCreateResourceFileDialog" timestamp="1601116727899">
       <screen x="0" y="1112" width="1536" height="832" />
     </state>
-    <state x="349" y="1267" key="AndroidCreateResourceFileDialog/0.1112.1536.832/0.40.1920.1040@0.1112.1536.832" timestamp="1601114799542" />
+    <state x="349" y="1267" key="AndroidCreateResourceFileDialog/0.1112.1536.832/0.40.1920.1040@0.1112.1536.832" timestamp="1601116727899" />
     <state x="2" y="1090" width="1534" height="854" key="CommitChangelistDialog2" timestamp="1600959502848">
       <screen x="0" y="1112" width="1536" height="832" />
     </state>
