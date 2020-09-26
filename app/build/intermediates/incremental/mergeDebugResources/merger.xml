@@ -6146,7 +6146,7 @@
         <item>Distance</item>
         <item>Average Speed</item>
         <item>Calories Burned</item>
-    </string-array><string name="google_maps_key">AIzaSyAXeOIE5OC9_9qunAmIA_esWqOoWMrIfkE</string></file><file path="D:\Android\JustRun\app\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+    </string-array><string name="google_maps_key"/></file><file path="D:\Android\JustRun\app\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         
         <item name="colorPrimary">@color/md_blue_900</item>
         <item name="colorSecondary">@color/md_blue_500</item>
