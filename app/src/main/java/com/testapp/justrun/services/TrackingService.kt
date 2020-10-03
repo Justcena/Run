@@ -30,12 +30,10 @@ import com.testapp.justrun.other.Contstant.ACTION_STOP_SERVICE
 import com.testapp.justrun.other.Contstant.NOTIFICATION_CHANNEL_ID
 import com.testapp.justrun.other.Contstant.NOTIFICATION_CHANNEL_NAME
 import com.testapp.justrun.other.Contstant.NOTIFICATION_ID
+import com.testapp.justrun.other.Polylines
 import com.testapp.justrun.other.TrackingUtility
 import com.testapp.justrun.ui.MainActivity
 import timber.log.Timber
-
-typealias  Polyline = MutableList<LatLng>
-typealias Polylines = MutableList<Polyline>
 
 class TrackingService : LifecycleService() {
     var isFirstRun = true
@@ -69,10 +67,12 @@ class TrackingService : LifecycleService() {
                         isFirstRun = false
                     } else {
                         Timber.d("Resume service")
+                        startForgroundService()
                     }
                 }
                 ACTION_PAUSE_SERVICE -> {
                     Timber.d("Paused service")
+                        pauseService()
                 }
                 ACTION_STOP_SERVICE -> {
                     Timber.d("Stop service")
@@ -97,6 +97,10 @@ class TrackingService : LifecycleService() {
         pathPoints.postValue(this)
     } ?: pathPoints.postValue(mutableListOf(mutableListOf()))
 
+
+    private fun pauseService() {
+        isTracking.postValue(false)
+    }
     @SuppressLint("MissingPermission")
     private fun updateLocationTracking(isTracking: Boolean) {
         if (isTracking) {
