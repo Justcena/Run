@@ -2,6 +2,8 @@ package com.testapp.justrun;
 
 import androidx.hilt.lifecycle.ViewModelFactoryModules;
 import com.testapp.justrun.di.AppModule;
+import com.testapp.justrun.di.ServiceModule;
+import com.testapp.justrun.services.TrackingService_GeneratedInjector;
 import com.testapp.justrun.ui.MainActivity_GeneratedInjector;
 import com.testapp.justrun.ui.fragment.RunFragment_GeneratedInjector;
 import com.testapp.justrun.ui.fragment.StatisticsFragment_GeneratedInjector;
@@ -181,9 +183,12 @@ public final class RunApplication_HiltComponents {
     }
   }
 
-  @Subcomponent
+  @Subcomponent(
+      modules = ServiceModule.class
+  )
   @ServiceScoped
-  public abstract static class ServiceC implements ServiceComponent,
+  public abstract static class ServiceC implements TrackingService_GeneratedInjector,
+      ServiceComponent,
       GeneratedComponent {
     @Subcomponent.Builder
     abstract interface Builder extends ServiceComponentBuilder {

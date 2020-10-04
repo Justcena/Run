@@ -1,15 +1,23 @@
 package com.testapp.justrun;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.view.View;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.hilt.lifecycle.ViewModelAssistedFactory;
 import androidx.hilt.lifecycle.ViewModelFactoryModules_ActivityModule_ProvideFactoryFactory;
 import androidx.hilt.lifecycle.ViewModelFactoryModules_FragmentModule_ProvideFactoryFactory;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.testapp.justrun.di.AppModule;
+import com.testapp.justrun.di.ServiceModule_ProvideBaseNotificationBuilderFactory;
+import com.testapp.justrun.di.ServiceModule_ProvideFuesdLocationProviderClientFactory;
+import com.testapp.justrun.di.ServiceModule_ProvideMainActivityPendingIntentFactory;
+import com.testapp.justrun.services.TrackingService;
+import com.testapp.justrun.services.TrackingService_MembersInjector;
 import com.testapp.justrun.ui.MainActivity;
 import com.testapp.justrun.ui.fragment.RunFragment;
 import com.testapp.justrun.ui.fragment.StatisticsFragment;
@@ -26,7 +34,10 @@ import dagger.hilt.android.internal.builders.ViewComponentBuilder;
 import dagger.hilt.android.internal.builders.ViewWithFragmentComponentBuilder;
 import dagger.hilt.android.internal.modules.ApplicationContextModule;
 import dagger.hilt.android.internal.modules.ApplicationContextModule_ProvideApplicationFactory;
+import dagger.hilt.android.internal.modules.ApplicationContextModule_ProvideContextFactory;
+import dagger.internal.DoubleCheck;
 import dagger.internal.MapBuilder;
+import dagger.internal.MemoizedSentinel;
 import dagger.internal.Preconditions;
 import java.util.Collections;
 import java.util.Map;
@@ -320,8 +331,67 @@ public final class DaggerRunApplication_HiltComponents_ApplicationC extends RunA
   }
 
   private final class ServiceCImpl extends RunApplication_HiltComponents.ServiceC {
+    private volatile Object fusedLocationProviderClient = new MemoizedSentinel();
+
+    private volatile Object pendingIntent = new MemoizedSentinel();
+
+    private volatile Object notificationCompatBuilder = new MemoizedSentinel();
+
     private ServiceCImpl(Service service) {
 
+    }
+
+    private FusedLocationProviderClient getFusedLocationProviderClient() {
+      Object local = fusedLocationProviderClient;
+      if (local instanceof MemoizedSentinel) {
+        synchronized (local) {
+          local = fusedLocationProviderClient;
+          if (local instanceof MemoizedSentinel) {
+            local = ServiceModule_ProvideFuesdLocationProviderClientFactory.provideFuesdLocationProviderClient(ApplicationContextModule_ProvideContextFactory.provideContext(DaggerRunApplication_HiltComponents_ApplicationC.this.applicationContextModule));
+            fusedLocationProviderClient = DoubleCheck.reentrantCheck(fusedLocationProviderClient, local);
+          }
+        }
+      }
+      return (FusedLocationProviderClient) local;
+    }
+
+    private PendingIntent getPendingIntent() {
+      Object local = pendingIntent;
+      if (local instanceof MemoizedSentinel) {
+        synchronized (local) {
+          local = pendingIntent;
+          if (local instanceof MemoizedSentinel) {
+            local = ServiceModule_ProvideMainActivityPendingIntentFactory.provideMainActivityPendingIntent(ApplicationContextModule_ProvideContextFactory.provideContext(DaggerRunApplication_HiltComponents_ApplicationC.this.applicationContextModule));
+            pendingIntent = DoubleCheck.reentrantCheck(pendingIntent, local);
+          }
+        }
+      }
+      return (PendingIntent) local;
+    }
+
+    private NotificationCompat.Builder getNotificationCompatBuilder() {
+      Object local = notificationCompatBuilder;
+      if (local instanceof MemoizedSentinel) {
+        synchronized (local) {
+          local = notificationCompatBuilder;
+          if (local instanceof MemoizedSentinel) {
+            local = ServiceModule_ProvideBaseNotificationBuilderFactory.provideBaseNotificationBuilder(ApplicationContextModule_ProvideContextFactory.provideContext(DaggerRunApplication_HiltComponents_ApplicationC.this.applicationContextModule), getPendingIntent());
+            notificationCompatBuilder = DoubleCheck.reentrantCheck(notificationCompatBuilder, local);
+          }
+        }
+      }
+      return (NotificationCompat.Builder) local;
+    }
+
+    @Override
+    public void injectTrackingService(TrackingService trackingService) {
+      injectTrackingService2(trackingService);
+    }
+
+    private TrackingService injectTrackingService2(TrackingService instance) {
+      TrackingService_MembersInjector.injectFusedLocationProviderClient(instance, getFusedLocationProviderClient());
+      TrackingService_MembersInjector.injectBasedNotificationBuilder(instance, getNotificationCompatBuilder());
+      return instance;
     }
   }
 }
