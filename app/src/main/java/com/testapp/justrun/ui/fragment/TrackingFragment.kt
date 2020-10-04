@@ -18,6 +18,7 @@ import com.testapp.justrun.other.Contstant.PLYLINE_COLOR
 import com.testapp.justrun.other.Contstant.POLYINE_WIDTH
 import com.testapp.justrun.other.Polyline
 import com.testapp.justrun.other.Polylines
+import com.testapp.justrun.other.TrackingUtility
 import com.testapp.justrun.services.TrackingService
 import com.testapp.justrun.ui.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,6 +32,8 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
     private var pathPoints = mutableListOf<Polyline>()
 
     private var map: GoogleMap? = null
+
+    private var currentTimeMillis = 0L
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,6 +61,11 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
             pathPoints = it
             addLatestPolyline()
             moveCameraToUser()
+        })
+        TrackingService.timeRunInMillis.observe(viewLifecycleOwner, Observer {
+            currentTimeMillis = it
+            val formattedSopWatch = TrackingUtility.getFormattedSopWatch(currentTimeMillis, true)
+            tvTimer.text = formattedSopWatch
         })
     }
 
