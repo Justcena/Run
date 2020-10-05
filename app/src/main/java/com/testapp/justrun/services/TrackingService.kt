@@ -45,6 +45,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class TrackingService : LifecycleService() {
     var isFirstRun = true
+    private var serviceKilled = false
 
     @Inject
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -98,13 +99,21 @@ class TrackingService : LifecycleService() {
                     pauseService()
                 }
                 ACTION_STOP_SERVICE -> {
+                    killService()
                     Timber.d("Stop service")
                 }
             }
         }
         return super.onStartCommand(intent, flags, startId)
     }
-
+    private fun killService() {
+        serviceKilled = true
+        isFirstRun=true
+        pauseService()
+        postInitialValues()
+        stopForeground(true)
+        stopSelf()
+    }
     private fun addPathPoint(location: Location?) {
         location?.let {
             val position = LatLng(location.latitude, location.longitude)
@@ -179,11 +188,12 @@ class TrackingService : LifecycleService() {
             set(currentNotificationBuilder, ArrayList<NotificationCompat.Action>())
         }
 
-        currentNotificationBuilder = basedNotificationBuilder
-            .addAction(R.drawable.ic_pause_black_24dp, notificationActionText, pendingIntent)
+        if (!serviceKilled) {
+            currentNotificationBuilder = basedNotificationBuilder
+                .addAction(R.drawable.ic_pause_black_24dp, notificationActionText, pendingIntent)
 
-        notificationManager.notify(NOTIFICATION_ID, currentNotificationBuilder.build())
-
+            notificationManager.notify(NOTIFICATION_ID, currentNotificationBuilder.build())
+        }
     }
 
 
@@ -232,14 +242,16 @@ class TrackingService : LifecycleService() {
             createNotificationChannel(notificationManager)
         }
 
-
         startForeground(NOTIFICATION_ID, basedNotificationBuilder.build())
 
         timeRunInSeconds.observe(this, Observer {
-            val notification = currentNotificationBuilder.setContentText(
-                TrackingUtility.getFormattedSopWatch(it * 1000L)
-            )
-            notificationManager.notify(NOTIFICATION_ID, notification.build())
+            if (!serviceKilled) {
+                val notification = currentNotificationBuilder.setContentText(
+                    TrackingUtility.getFormattedSopWatch(it * 1000L)
+                )
+                notificationManager.notify(NOTIFICATION_ID, notification.build())
+            }
+
         })
     }
 
