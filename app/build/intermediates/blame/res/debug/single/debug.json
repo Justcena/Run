@@ -316,6 +316,10 @@
         "source": "D:\\Android\\JustRun\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_add_black.png"
     },
     {
+        "merged": "D:\\Android\\JustRun\\app\\build\\intermediates\\res\\merged\\debug\\layout_item_run.xml.flat",
+        "source": "D:\\Android\\JustRun\\app\\src\\main\\res\\layout\\item_run.xml"
+    },
+    {
         "merged": "D:\\Android\\JustRun\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_add_black.png.flat",
         "source": "D:\\Android\\JustRun\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_add_black.png"
     },

@@ -35,12 +35,12 @@
       <list>
         <option value="Kotlin Interface" />
         <option value="Kotlin Object" />
-        <option value="layoutResourceFile" />
         <option value="navigationResourceFile" />
         <option value="Kotlin File" />
         <option value="resourceFile" />
         <option value="Class" />
         <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -351,10 +351,10 @@
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="477" y="292" key="#PSD/1920.32.1536.832/0.40.1920.1040@0.40.1920.1040" timestamp="1601999773116" />
-    <state x="751" y="276" key="#com.intellij.ide.util.MemberChooser" timestamp="1601123046667">
+    <state x="751" y="276" key="#com.intellij.ide.util.MemberChooser" timestamp="1602263502369">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="751" y="276" key="#com.intellij.ide.util.MemberChooser/1920.32.1536.832/0.40.1920.1040@0.40.1920.1040" timestamp="1601123046667" />
+    <state x="751" y="276" key="#com.intellij.ide.util.MemberChooser/1920.32.1536.832/0.40.1920.1040@0.40.1920.1040" timestamp="1602263502369" />
     <state x="640" y="288" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1601813999580">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
@@ -368,11 +368,11 @@
       <screen x="0" y="1112" width="1536" height="832" />
     </state>
     <state x="548" y="1176" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.1112.1536.832/0.40.1920.1040@0.1112.1536.832" timestamp="1600954315853" />
-    <state x="436" y="234" key="AndroidCreateResourceFileDialog" timestamp="1601884406089">
+    <state x="436" y="234" key="AndroidCreateResourceFileDialog" timestamp="1602263771546">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="349" y="1267" key="AndroidCreateResourceFileDialog/0.1112.1536.832/0.40.1920.1040@0.1112.1536.832" timestamp="1601116727899" />
-    <state x="436" y="234" key="AndroidCreateResourceFileDialog/1920.32.1536.832/0.40.1920.1040@0.40.1920.1040" timestamp="1601884406089" />
+    <state x="436" y="234" key="AndroidCreateResourceFileDialog/1920.32.1536.832/0.40.1920.1040@0.40.1920.1040" timestamp="1602263771546" />
     <state x="2" y="1090" width="1534" height="854" key="CommitChangelistDialog2" timestamp="1600959502848">
       <screen x="0" y="1112" width="1536" height="832" />
     </state>
@@ -454,11 +454,11 @@
       <screen x="0" y="1112" width="1536" height="832" />
     </state>
     <state x="93" y="1173" width="1350" height="678" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.1112.1536.832/0.40.1920.1040@0.1112.1536.832" timestamp="1601107144631" />
-    <state x="581" y="340" key="com.intellij.ide.util.TipDialog" timestamp="1602230724891">
+    <state x="581" y="340" key="com.intellij.ide.util.TipDialog" timestamp="1602261458908">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="465" y="1352" key="com.intellij.ide.util.TipDialog/0.1112.1536.832/0.40.1920.1040@0.1112.1536.832" timestamp="1601106326088" />
-    <state x="581" y="340" key="com.intellij.ide.util.TipDialog/1920.32.1536.832/0.40.1920.1040@0.40.1920.1040" timestamp="1602230724891" />
+    <state x="581" y="340" key="com.intellij.ide.util.TipDialog/1920.32.1536.832/0.40.1920.1040@0.40.1920.1040" timestamp="1602261458908" />
     <state x="607" y="175" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601131384759">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
@@ -467,10 +467,10 @@
       <screen x="0" y="1112" width="1536" height="832" />
     </state>
     <state x="578" y="1429" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.1112.1536.832/0.40.1920.1040@0.1112.1536.832" timestamp="1600959015605" />
-    <state x="616" y="260" key="run.anything.popup" timestamp="1601122971009">
+    <state x="616" y="260" key="run.anything.popup" timestamp="1602269795472">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="616" y="260" key="run.anything.popup/1920.32.1536.832/0.40.1920.1040@0.40.1920.1040" timestamp="1601122971009" />
+    <state x="616" y="260" key="run.anything.popup/1920.32.1536.832/0.40.1920.1040@0.40.1920.1040" timestamp="1602269795472" />
     <state x="539" y="228" width="840" height="848" key="search.everywhere.popup" timestamp="1602149354338">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>

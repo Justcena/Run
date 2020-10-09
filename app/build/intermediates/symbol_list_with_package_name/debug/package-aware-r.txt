@@ -1950,6 +1950,7 @@ id info
 id invisible
 id italic
 id item_touch_helper_previous_elevation
+id ivRunImage
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -2170,9 +2171,14 @@ id transition_transform
 id triangle
 id tvAverageSpeed
 id tvAverageSpeedInfo
+id tvAvgSpeed
+id tvCalories
 id tvContinue
+id tvDate
+id tvDistance
 id tvFilterBy
 id tvLetsGo
+id tvTime
 id tvTimer
 id tvToolbarTitle
 id tvTotalCalories
@@ -2281,6 +2287,7 @@ layout fragment_settings
 layout fragment_setup
 layout fragment_statistics
 layout fragment_tracking
+layout item_run
 layout material_chip_input_combo
 layout material_clock_display
 layout material_clock_display_divider

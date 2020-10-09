@@ -10,6 +10,8 @@ import kotlinx.coroutines.launch
 class MainViewModel @ViewModelInject constructor(val mainRepository: MainRepository) : ViewModel() {
 
 
+    val runSortedByDate = mainRepository.getAllRunSortedByDate()
+
     fun insertRun(runEntites: RunEntites) = viewModelScope.launch {
         mainRepository.insertRun(runEntites)
     }
