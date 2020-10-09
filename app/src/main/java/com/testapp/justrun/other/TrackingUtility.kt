@@ -2,13 +2,14 @@ package com.testapp.justrun.other
 
 import android.Manifest
 import android.content.Context
+import android.location.Location
 import android.os.Build
+import com.google.android.gms.location.LocationRequest
 import pub.devrel.easypermissions.EasyPermissions
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
 object TrackingUtility {
-
     fun hasLocationPermision(context: Context) =
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             EasyPermissions.hasPermissions(
@@ -25,6 +26,23 @@ object TrackingUtility {
             )
         }
 
+
+    fun calculatePolylineLength(polyline: Polyline): Float {
+        var distance = 0f
+        var result = FloatArray(1)
+        for (i in 0..polyline.size - 2) {
+            val pos1 = polyline[i]
+            val pos2 = polyline[i + 1]
+            Location.distanceBetween(
+                pos1.latitude, pos1.longitude,
+                pos2.latitude, pos2.longitude,
+                result
+            )
+
+            distance += result[0]
+        }
+        return distance
+    }
 
     fun getFormattedSopWatch(ms: Long, includeMillis: Boolean = false): String {
         var milliseconds = ms

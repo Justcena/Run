@@ -12,10 +12,15 @@ import androidx.hilt.lifecycle.ViewModelFactoryModules_FragmentModule_ProvideFac
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.testapp.justrun.db.RunDao;
+import com.testapp.justrun.db.RunningDatabase;
 import com.testapp.justrun.di.AppModule;
+import com.testapp.justrun.di.AppModule_ProvideRunDaoFactory;
+import com.testapp.justrun.di.AppModule_ProvideRunningDatabaseFactory;
 import com.testapp.justrun.di.ServiceModule_ProvideBaseNotificationBuilderFactory;
 import com.testapp.justrun.di.ServiceModule_ProvideFuesdLocationProviderClientFactory;
 import com.testapp.justrun.di.ServiceModule_ProvideMainActivityPendingIntentFactory;
+import com.testapp.justrun.repository.MainRepository;
 import com.testapp.justrun.services.TrackingService;
 import com.testapp.justrun.services.TrackingService_MembersInjector;
 import com.testapp.justrun.ui.MainActivity;
@@ -56,6 +61,10 @@ import javax.inject.Provider;
 public final class DaggerRunApplication_HiltComponents_ApplicationC extends RunApplication_HiltComponents.ApplicationC {
   private final ApplicationContextModule applicationContextModule;
 
+  private volatile Object runningDatabase = new MemoizedSentinel();
+
+  private volatile Object runDao = new MemoizedSentinel();
+
   private DaggerRunApplication_HiltComponents_ApplicationC(
       ApplicationContextModule applicationContextModuleParam) {
     this.applicationContextModule = applicationContextModuleParam;
@@ -63,6 +72,34 @@ public final class DaggerRunApplication_HiltComponents_ApplicationC extends RunA
 
   public static Builder builder() {
     return new Builder();
+  }
+
+  private RunningDatabase getRunningDatabase() {
+    Object local = runningDatabase;
+    if (local instanceof MemoizedSentinel) {
+      synchronized (local) {
+        local = runningDatabase;
+        if (local instanceof MemoizedSentinel) {
+          local = AppModule_ProvideRunningDatabaseFactory.provideRunningDatabase(ApplicationContextModule_ProvideContextFactory.provideContext(applicationContextModule));
+          runningDatabase = DoubleCheck.reentrantCheck(runningDatabase, local);
+        }
+      }
+    }
+    return (RunningDatabase) local;
+  }
+
+  private RunDao getRunDao() {
+    Object local = runDao;
+    if (local instanceof MemoizedSentinel) {
+      synchronized (local) {
+        local = runDao;
+        if (local instanceof MemoizedSentinel) {
+          local = AppModule_ProvideRunDaoFactory.provideRunDao(getRunningDatabase());
+          runDao = DoubleCheck.reentrantCheck(runDao, local);
+        }
+      }
+    }
+    return (RunDao) local;
   }
 
   @Override
@@ -141,12 +178,31 @@ public final class DaggerRunApplication_HiltComponents_ApplicationC extends RunA
     private final class ActivityCImpl extends RunApplication_HiltComponents.ActivityC {
       private final Activity activity;
 
+      private volatile Provider<MainRepository> mainRepositoryProvider;
+
       private volatile Provider<MainViewModel_AssistedFactory> mainViewModel_AssistedFactoryProvider;
 
       private volatile Provider<StatisticsViewModel_AssistedFactory> statisticsViewModel_AssistedFactoryProvider;
 
       private ActivityCImpl(Activity activityParam) {
         this.activity = activityParam;
+      }
+
+      private MainRepository getMainRepository() {
+        return new MainRepository(DaggerRunApplication_HiltComponents_ApplicationC.this.getRunDao());
+      }
+
+      private Provider<MainRepository> getMainRepositoryProvider() {
+        Object local = mainRepositoryProvider;
+        if (local == null) {
+          local = new SwitchingProvider<>(1);
+          mainRepositoryProvider = (Provider<MainRepository>) local;
+        }
+        return (Provider<MainRepository>) local;
+      }
+
+      private MainViewModel_AssistedFactory getMainViewModel_AssistedFactory() {
+        return MainViewModel_AssistedFactory_Factory.newInstance(getMainRepositoryProvider());
       }
 
       private Provider<MainViewModel_AssistedFactory> getMainViewModel_AssistedFactoryProvider() {
@@ -162,7 +218,7 @@ public final class DaggerRunApplication_HiltComponents_ApplicationC extends RunA
           ) {
         Object local = statisticsViewModel_AssistedFactoryProvider;
         if (local == null) {
-          local = new SwitchingProvider<>(1);
+          local = new SwitchingProvider<>(2);
           statisticsViewModel_AssistedFactoryProvider = (Provider<StatisticsViewModel_AssistedFactory>) local;
         }
         return (Provider<StatisticsViewModel_AssistedFactory>) local;
@@ -302,9 +358,12 @@ public final class DaggerRunApplication_HiltComponents_ApplicationC extends RunA
         public T get() {
           switch (id) {
             case 0: // com.testapp.justrun.ui.viewmodels.MainViewModel_AssistedFactory 
-            return (T) MainViewModel_AssistedFactory_Factory.newInstance();
+            return (T) ActivityCImpl.this.getMainViewModel_AssistedFactory();
 
-            case 1: // com.testapp.justrun.ui.viewmodels.StatisticsViewModel_AssistedFactory 
+            case 1: // com.testapp.justrun.repository.MainRepository 
+            return (T) ActivityCImpl.this.getMainRepository();
+
+            case 2: // com.testapp.justrun.ui.viewmodels.StatisticsViewModel_AssistedFactory 
             return (T) StatisticsViewModel_AssistedFactory_Factory.newInstance();
 
             default: throw new AssertionError(id);
