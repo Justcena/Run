@@ -3,6 +3,7 @@ package com.testapp.justrun;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.SharedPreferences;
 import android.view.View;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ import com.testapp.justrun.db.RunningDatabase;
 import com.testapp.justrun.di.AppModule;
 import com.testapp.justrun.di.AppModule_ProvideRunDaoFactory;
 import com.testapp.justrun.di.AppModule_ProvideRunningDatabaseFactory;
+import com.testapp.justrun.di.AppModule_ProvideSharedPreferencesFactory;
 import com.testapp.justrun.di.ServiceModule_ProvideBaseNotificationBuilderFactory;
 import com.testapp.justrun.di.ServiceModule_ProvideFuesdLocationProviderClientFactory;
 import com.testapp.justrun.di.ServiceModule_ProvideMainActivityPendingIntentFactory;
@@ -25,8 +27,11 @@ import com.testapp.justrun.services.TrackingService;
 import com.testapp.justrun.services.TrackingService_MembersInjector;
 import com.testapp.justrun.ui.MainActivity;
 import com.testapp.justrun.ui.fragment.RunFragment;
+import com.testapp.justrun.ui.fragment.SetupFragment;
+import com.testapp.justrun.ui.fragment.SetupFragment_MembersInjector;
 import com.testapp.justrun.ui.fragment.StatisticsFragment;
 import com.testapp.justrun.ui.fragment.TrackingFragment;
+import com.testapp.justrun.ui.fragment.TrackingFragment_MembersInjector;
 import com.testapp.justrun.ui.viewmodels.MainViewModel_AssistedFactory;
 import com.testapp.justrun.ui.viewmodels.MainViewModel_AssistedFactory_Factory;
 import com.testapp.justrun.ui.viewmodels.StatisticsViewModel_AssistedFactory;
@@ -65,6 +70,12 @@ public final class DaggerRunApplication_HiltComponents_ApplicationC extends RunA
 
   private volatile Object runDao = new MemoizedSentinel();
 
+  private volatile Object sharedPreferences = new MemoizedSentinel();
+
+  private volatile Object b = new MemoizedSentinel();
+
+  private volatile Object f = new MemoizedSentinel();
+
   private DaggerRunApplication_HiltComponents_ApplicationC(
       ApplicationContextModule applicationContextModuleParam) {
     this.applicationContextModule = applicationContextModuleParam;
@@ -100,6 +111,48 @@ public final class DaggerRunApplication_HiltComponents_ApplicationC extends RunA
       }
     }
     return (RunDao) local;
+  }
+
+  private SharedPreferences getSharedPreferences() {
+    Object local = sharedPreferences;
+    if (local instanceof MemoizedSentinel) {
+      synchronized (local) {
+        local = sharedPreferences;
+        if (local instanceof MemoizedSentinel) {
+          local = AppModule_ProvideSharedPreferencesFactory.provideSharedPreferences(ApplicationContextModule_ProvideContextFactory.provideContext(applicationContextModule));
+          sharedPreferences = DoubleCheck.reentrantCheck(sharedPreferences, local);
+        }
+      }
+    }
+    return (SharedPreferences) local;
+  }
+
+  private boolean getB() {
+    Object local = b;
+    if (local instanceof MemoizedSentinel) {
+      synchronized (local) {
+        local = b;
+        if (local instanceof MemoizedSentinel) {
+          local = AppModule.INSTANCE.provideFirstTimeToggle(getSharedPreferences());
+          b = DoubleCheck.reentrantCheck(b, local);
+        }
+      }
+    }
+    return (boolean) local;
+  }
+
+  private float getF() {
+    Object local = f;
+    if (local instanceof MemoizedSentinel) {
+      synchronized (local) {
+        local = f;
+        if (local instanceof MemoizedSentinel) {
+          local = AppModule.INSTANCE.provideWeight(getSharedPreferences());
+          f = DoubleCheck.reentrantCheck(f, local);
+        }
+      }
+    }
+    return (float) local;
   }
 
   @Override
@@ -284,11 +337,17 @@ public final class DaggerRunApplication_HiltComponents_ApplicationC extends RunA
         }
 
         @Override
+        public void injectSetupFragment(SetupFragment setupFragment) {
+          injectSetupFragment2(setupFragment);
+        }
+
+        @Override
         public void injectStatisticsFragment(StatisticsFragment statisticsFragment) {
         }
 
         @Override
         public void injectTrackingFragment(TrackingFragment trackingFragment) {
+          injectTrackingFragment2(trackingFragment);
         }
 
         @Override
@@ -299,6 +358,17 @@ public final class DaggerRunApplication_HiltComponents_ApplicationC extends RunA
         @Override
         public ViewWithFragmentComponentBuilder viewWithFragmentComponentBuilder() {
           return new ViewWithFragmentCBuilder();
+        }
+
+        private SetupFragment injectSetupFragment2(SetupFragment instance) {
+          SetupFragment_MembersInjector.injectSharedPreferences(instance, DaggerRunApplication_HiltComponents_ApplicationC.this.getSharedPreferences());
+          SetupFragment_MembersInjector.injectSetFirstAppOpen(instance, DaggerRunApplication_HiltComponents_ApplicationC.this.getB());
+          return instance;
+        }
+
+        private TrackingFragment injectTrackingFragment2(TrackingFragment instance) {
+          TrackingFragment_MembersInjector.injectSetWeight(instance, DaggerRunApplication_HiltComponents_ApplicationC.this.getF());
+          return instance;
         }
 
         private final class ViewWithFragmentCBuilder implements RunApplication_HiltComponents.ViewWithFragmentC.Builder {
