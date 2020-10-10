@@ -1,4 +1,4 @@
-#Sat Oct 10 02:16:02 IRST 2020
+#Sat Oct 10 15:26:01 IRST 2020
 base.0=D\:\\Android\\JustRun\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

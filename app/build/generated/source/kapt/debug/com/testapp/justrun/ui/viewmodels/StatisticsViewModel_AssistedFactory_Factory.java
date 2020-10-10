@@ -1,7 +1,9 @@
 package com.testapp.justrun.ui.viewmodels;
 
+import com.testapp.justrun.repository.MainRepository;
 import dagger.internal.Factory;
 import javax.annotation.Generated;
+import javax.inject.Provider;
 
 @Generated(
     value = "dagger.internal.codegen.ComponentProcessor",
@@ -12,20 +14,25 @@ import javax.annotation.Generated;
     "rawtypes"
 })
 public final class StatisticsViewModel_AssistedFactory_Factory implements Factory<StatisticsViewModel_AssistedFactory> {
+  private final Provider<MainRepository> mainRepositoryProvider;
+
+  public StatisticsViewModel_AssistedFactory_Factory(
+      Provider<MainRepository> mainRepositoryProvider) {
+    this.mainRepositoryProvider = mainRepositoryProvider;
+  }
+
   @Override
   public StatisticsViewModel_AssistedFactory get() {
-    return newInstance();
+    return newInstance(mainRepositoryProvider);
   }
 
-  public static StatisticsViewModel_AssistedFactory_Factory create() {
-    return InstanceHolder.INSTANCE;
+  public static StatisticsViewModel_AssistedFactory_Factory create(
+      Provider<MainRepository> mainRepositoryProvider) {
+    return new StatisticsViewModel_AssistedFactory_Factory(mainRepositoryProvider);
   }
 
-  public static StatisticsViewModel_AssistedFactory newInstance() {
-    return new StatisticsViewModel_AssistedFactory();
-  }
-
-  private static final class InstanceHolder {
-    private static final StatisticsViewModel_AssistedFactory_Factory INSTANCE = new StatisticsViewModel_AssistedFactory_Factory();
+  public static StatisticsViewModel_AssistedFactory newInstance(
+      Provider<MainRepository> mainRepository) {
+    return new StatisticsViewModel_AssistedFactory(mainRepository);
   }
 }

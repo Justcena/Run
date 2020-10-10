@@ -38,12 +38,12 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
     private val viewModel: MainViewModel by viewModels()
 
     private var isTracking = false
+
     private var pathPoints = mutableListOf<Polyline>()
 
     private var map: GoogleMap? = null
 
     private var currentTimeMillis = 0L
-
 
     private var menu: Menu? = null
 

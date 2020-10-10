@@ -27,6 +27,8 @@ import com.testapp.justrun.services.TrackingService;
 import com.testapp.justrun.services.TrackingService_MembersInjector;
 import com.testapp.justrun.ui.MainActivity;
 import com.testapp.justrun.ui.fragment.RunFragment;
+import com.testapp.justrun.ui.fragment.SettingsFragment;
+import com.testapp.justrun.ui.fragment.SettingsFragment_MembersInjector;
 import com.testapp.justrun.ui.fragment.SetupFragment;
 import com.testapp.justrun.ui.fragment.SetupFragment_MembersInjector;
 import com.testapp.justrun.ui.fragment.StatisticsFragment;
@@ -267,6 +269,10 @@ public final class DaggerRunApplication_HiltComponents_ApplicationC extends RunA
         return (Provider<MainViewModel_AssistedFactory>) local;
       }
 
+      private StatisticsViewModel_AssistedFactory getStatisticsViewModel_AssistedFactory() {
+        return StatisticsViewModel_AssistedFactory_Factory.newInstance(getMainRepositoryProvider());
+      }
+
       private Provider<StatisticsViewModel_AssistedFactory> getStatisticsViewModel_AssistedFactoryProvider(
           ) {
         Object local = statisticsViewModel_AssistedFactoryProvider;
@@ -337,6 +343,11 @@ public final class DaggerRunApplication_HiltComponents_ApplicationC extends RunA
         }
 
         @Override
+        public void injectSettingsFragment(SettingsFragment settingsFragment) {
+          injectSettingsFragment2(settingsFragment);
+        }
+
+        @Override
         public void injectSetupFragment(SetupFragment setupFragment) {
           injectSetupFragment2(setupFragment);
         }
@@ -358,6 +369,11 @@ public final class DaggerRunApplication_HiltComponents_ApplicationC extends RunA
         @Override
         public ViewWithFragmentComponentBuilder viewWithFragmentComponentBuilder() {
           return new ViewWithFragmentCBuilder();
+        }
+
+        private SettingsFragment injectSettingsFragment2(SettingsFragment instance) {
+          SettingsFragment_MembersInjector.injectSharedPreferences(instance, DaggerRunApplication_HiltComponents_ApplicationC.this.getSharedPreferences());
+          return instance;
         }
 
         private SetupFragment injectSetupFragment2(SetupFragment instance) {
@@ -434,7 +450,7 @@ public final class DaggerRunApplication_HiltComponents_ApplicationC extends RunA
             return (T) ActivityCImpl.this.getMainRepository();
 
             case 2: // com.testapp.justrun.ui.viewmodels.StatisticsViewModel_AssistedFactory 
-            return (T) StatisticsViewModel_AssistedFactory_Factory.newInstance();
+            return (T) ActivityCImpl.this.getStatisticsViewModel_AssistedFactory();
 
             default: throw new AssertionError(id);
           }

@@ -6,6 +6,7 @@ import com.testapp.justrun.di.ServiceModule;
 import com.testapp.justrun.services.TrackingService_GeneratedInjector;
 import com.testapp.justrun.ui.MainActivity_GeneratedInjector;
 import com.testapp.justrun.ui.fragment.RunFragment_GeneratedInjector;
+import com.testapp.justrun.ui.fragment.SettingsFragment_GeneratedInjector;
 import com.testapp.justrun.ui.fragment.SetupFragment_GeneratedInjector;
 import com.testapp.justrun.ui.fragment.StatisticsFragment_GeneratedInjector;
 import com.testapp.justrun.ui.fragment.TrackingFragment_GeneratedInjector;
@@ -173,6 +174,7 @@ public final class RunApplication_HiltComponents {
   )
   @FragmentScoped
   public abstract static class FragmentC implements RunFragment_GeneratedInjector,
+      SettingsFragment_GeneratedInjector,
       SetupFragment_GeneratedInjector,
       StatisticsFragment_GeneratedInjector,
       TrackingFragment_GeneratedInjector,
