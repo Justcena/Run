@@ -168,6 +168,10 @@
         "source": "D:\\Android\\JustRun\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_launcher_background.png"
     },
     {
+        "merged": "D:\\Android\\JustRun\\app\\build\\intermediates\\res\\merged\\debug\\layout_marker_view.xml.flat",
+        "source": "D:\\Android\\JustRun\\app\\src\\main\\res\\layout\\marker_view.xml"
+    },
+    {
         "merged": "D:\\Android\\JustRun\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
         "source": "D:\\Android\\JustRun\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
     },

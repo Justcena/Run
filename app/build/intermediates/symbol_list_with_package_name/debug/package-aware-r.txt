@@ -1826,6 +1826,7 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id barChart
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -1960,7 +1961,6 @@ id left
 id light
 id line1
 id line3
-id lineChart
 id linear
 id listMode
 id list_item
@@ -2173,9 +2173,11 @@ id tvAverageSpeed
 id tvAverageSpeedInfo
 id tvAvgSpeed
 id tvCalories
+id tvCaloriesBurned
 id tvContinue
 id tvDate
 id tvDistance
+id tvDuration
 id tvFilterBy
 id tvLetsGo
 id tvTime
@@ -2288,6 +2290,7 @@ layout fragment_setup
 layout fragment_statistics
 layout fragment_tracking
 layout item_run
+layout marker_view
 layout material_chip_input_combo
 layout material_clock_display
 layout material_clock_display_divider
